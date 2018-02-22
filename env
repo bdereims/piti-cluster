@@ -1,0 +1,2 @@
+export NUM_NODES=3
+export NODE_NAME="rpi"
