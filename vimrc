@@ -1,0 +1,2 @@
+set compatible 
+set modeline 

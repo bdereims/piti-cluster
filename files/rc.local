@@ -7,4 +7,6 @@ iptables -F -t nat
 iptables -X
 iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 #iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-iptables -t nat -A PREROUTING -i eth1 -p tcp -m tcp --dport 80 -j DNAT --to-destination 10.244.2.8:80
+#iptables -t nat -A PREROUTING -i eth1 -p tcp -m tcp --dport 80 -j DNAT --to-destination 10.244.2.8:80
+
+exit 0
