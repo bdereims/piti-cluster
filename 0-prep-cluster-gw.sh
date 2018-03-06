@@ -10,7 +10,7 @@ fi
 
 function update_raspbian {
   apt-get update ; apt-get -y upgrade
-  apt-get -y install dnsmasq hostapd
+  apt-get -y install dnsmasq hostapd sshpass
   rpi-update
 }
 
@@ -36,10 +36,15 @@ function update_system {
   cat ./files/dhcpcd.conf | sed -e "s/###SUBNET###/${SUBNET}/" > /etc/dhcpcd.conf
 }
 
+function update_ssh {
+  ssh-keygen -t rsa -b 2048 -f /root/.ssh/id_rsa -q -P "" 
+}
+
 function main {
 	#update_raspbian
   #update_hostname
   update_system
+  update_ssh
 }
 
 main
