@@ -47,13 +47,14 @@ function update_system {
 
 function update_ssh {
   ssh-keygen -t rsa -b 2048 -f /root/.ssh/id_rsa -q -P "" 
+  cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 }
 
 function main {
-	#update_raspbian
-  #update_hostname
+	update_raspbian
+  update_hostname
   update_system
-  #update_ssh
+  update_ssh
 }
 
 main

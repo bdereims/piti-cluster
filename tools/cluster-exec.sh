@@ -1,7 +1,7 @@
 #!/bin/bash
 #bdereims@gmail.com
 
-. ./env
+. ../env
 
 I=${NUM_NODES}
 

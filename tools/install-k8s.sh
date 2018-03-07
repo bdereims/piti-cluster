@@ -1,7 +1,7 @@
 #!/bin/bash
 #bdereims@gmail.com
 
-. ./env
+. ../env
 
 I=${NUM_NODES}
 
@@ -10,7 +10,7 @@ do
 	NODE=${NODE_NAME}-${I}
 	echo "### ${NODE} ###"
 	SCRIPT=install-k8s.sh
-	scp files/${SCRIPT} ${NODE}:.
+	scp ../files/${SCRIPT} ${NODE}:.
 	ssh ${NODE} "bash ./${SCRIPT} ; rm -fr ${SCRIPT}"
 	I=$( expr ${I} - 1 )
 done
