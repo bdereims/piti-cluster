@@ -26,6 +26,14 @@ function bkp {
 
 function update_system {
   cat ./files/dnsmasq.conf | sed -e "s/###DOMAIN###/${DOMAIN}/g" -e "s/###SUBNET###/${SUBNET}/g" > /etc/dnsmasq.conf
+  cat ./files/dnsmasq-wifi.conf | sed -e "s/###DOMAIN###/${DOMAIN}/g" -e "s/###SUBNET###/${SUBNET}/g" \
+  -e "s/###DOMAIN_WIFI###/${DOMAIN_WIFI}/g" -e "s/###SUBNET_WIFI###/${SUBNET_WIFI}/g" > /etc/dnsmasq-wifi.conf
+  cat ./files/cluster-pi.hosts | sed -e "s/###SUBNET###/${SUBNET}/g" > /etc/cluster-pi.hosts
+  cp ./files/hostapd /etc/default/.
+  cp ./files/hostapd.conf /etc/hostapd/.
+  cp ./files/dnsmasq-wifi.service /etc/systemd/system/.
+  systemctl daemon-reload
+  systemctl enable dnsmasq-wifi 
   bkp /etc/sysctl.conf
   cp ./files/sysctl.conf /etc/.
   cp ./files/rc.local /etc/.
@@ -34,6 +42,7 @@ function update_system {
   bkp /boot/cmdline.txt
   sed -e "s/rootfstype=ext4 elevator=deadline/rootfstype=ext4 cgroup_enable=cpuset cgroup_memory=1 elevator=deadline/" -i /boot/cmdline.txt
   cat ./files/dhcpcd.conf | sed -e "s/###SUBNET###/${SUBNET}/" > /etc/dhcpcd.conf
+  cp /home/pi/.bashrc ~/.bashrc
 }
 
 function update_ssh {
@@ -44,7 +53,7 @@ function main {
 	#update_raspbian
   #update_hostname
   update_system
-  update_ssh
+  #update_ssh
 }
 
 main
