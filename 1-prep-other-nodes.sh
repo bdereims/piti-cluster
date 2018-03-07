@@ -31,7 +31,7 @@ function each_dhcp_lease {
     remotely ${NODE} "sed -e '/^127\.0\.1\.1.*/d' -i /etc/hosts"
     remotely ${NODE} "printf \"127.0.1.1\t${NODE_NAME}-${NODE_NUM}\n\" >> /etc/hosts"
     
-    remotely ${NODE} "sed -e 's/rootfstype=ext4 elevator=deadline/rootfstype=ext4 cgroup_enable=cpuset cgroup_memory=1 elevator=deadline/' -i /boot/cmdline.txt"
+    remotely ${NODE} "sed -e 's/rootfstype=ext4 elevator=deadline/rootfstype=ext4 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 elevator=deadline/' -i /boot/cmdline.txt"
     remotely_cp ${NODE} ./files/config.txt /boot/.
 
     remotely_cp ${NODE} ./files/sysctl.conf /etc/.

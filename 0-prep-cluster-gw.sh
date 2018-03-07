@@ -40,7 +40,7 @@ function update_system {
   bkp /boot/config.txt
   cp ./files/config.txt /boot/.
   bkp /boot/cmdline.txt
-  sed -e "s/rootfstype=ext4 elevator=deadline/rootfstype=ext4 cgroup_enable=cpuset cgroup_memory=1 elevator=deadline/" -i /boot/cmdline.txt
+  sed -e "s/rootfstype=ext4 elevator=deadline/rootfstype=ext4 cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 elevator=deadline/" -i /boot/cmdline.txt
   cat ./files/dhcpcd.conf | sed -e "s/###SUBNET###/${SUBNET}/" > /etc/dhcpcd.conf
   cp /home/pi/.bashrc ~/.bashrc
 }
