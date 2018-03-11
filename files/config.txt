@@ -55,7 +55,14 @@
 # Enable audio (loads snd_bcm2835)
 dtparam=audio=on
 
+#program_usb_boot_mode=1
 gpu_mem=16
+#initramfs initramfs-linux.img followkernel
+dtparam=sd_overclock=80
 force_turbo=1
 boot_delay=1
-#program_usb_boot_mode=1
+rm_freq=1350
+core_freq=500
+over_voltage=4
+disable_splash=1
+sdram_freq=500

@@ -11,7 +11,7 @@ fi
 function update_raspbian {
   apt-get update ; apt-get -y upgrade
   apt-get -y install dnsmasq hostapd sshpass
-  rpi-update
+  #rpi-update
 }
 
 function update_hostname {
