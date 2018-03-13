@@ -1,0 +1,18 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-nfs
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs 
+  mountOptions:
+    - hard
+    - nfsvers=3
+  nfs:
+    path: /mnt/data/k8s
+    server: 172.16.175.2

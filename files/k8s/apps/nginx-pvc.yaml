@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  generateName: nginx-pvc-
+  labels:
+    app: nginx 
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: nginx 
+  template:
+    metadata:
+      labels:
+        app: nginx 
+        version: v0.0.1
+    spec:
+      containers:
+      - name: nginx 
+        image: armhfbuild/nginx 
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: nginxpd
+        ports:
+        - containerPort: 80
+      volumes:
+        - name: nginxpd
+          persistentVolumeClaim:
+            claimName: pvc-nfs 
