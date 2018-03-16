@@ -10,7 +10,7 @@ fi
 
 function update_raspbian {
   apt-get update ; apt-get -y upgrade
-  apt-get -y install dnsmasq hostapd sshpass
+  apt-get -y install dnsmasq hostapd sshpass bridge-utils
   #rpi-update
 }
 
